@@ -1,8 +1,13 @@
 import { 
   Plus, 
   Search, 
-  LayoutGrid,
-  List,
+  LayoutGrid, 
+  List, 
+  Layers, 
+  Activity, 
+  Clock, 
+  DollarSign,
+  Award,
 } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,6 +18,8 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { QueueTable } from "./Components/QueueTable";
 import { RunningProjectsTable } from "./Components/RunningProjectsTable";
+import { MemberRevenueTable } from "./Components/MemberRevenueTable";
+import { MetricsCard } from "@/components/dashboard/MetricsCard";
 
 const projectsData = [
   {
@@ -24,6 +31,7 @@ const projectsData = [
     deliveryDate: "Dec 15, 2024",
     value: "$45,000",
     status: "Pending Assignment",
+    progress: 0,
     currentPhase: "UI Phase",
     prevPhase: "Initial Review",
   },
@@ -36,6 +44,7 @@ const projectsData = [
     deliveryDate: "Jan 10, 2025",
     value: "$12,500",
     status: "Pending Assignment",
+    progress: 0,
     currentPhase: "UI Phase",
     prevPhase: "Planning",
   },
@@ -69,10 +78,54 @@ const projectsData = [
   },
 ];
 
+const memberRevenueData = [
+  {
+    id: "M1",
+    name: "Alex Rivera",
+    avatar: "https://i.pravatar.cc/150?u=1",
+    role: "Frontend Lead",
+    revenueThisMonth: 12500,
+    revenueAllTime: 145000,
+    projectsCount: 12,
+    isTopPerformer: true,
+  },
+  {
+    id: "M2",
+    name: "Sarah Chen",
+    avatar: "https://i.pravatar.cc/150?u=4",
+    role: "Backend Architect",
+    revenueThisMonth: 10800,
+    revenueAllTime: 132000,
+    projectsCount: 10,
+    isTopPerformer: false,
+  },
+  {
+    id: "M3",
+    name: "Mike Ross",
+    avatar: "https://i.pravatar.cc/150?u=3",
+    role: "UI/UX Designer",
+    revenueThisMonth: 8500,
+    revenueAllTime: 98000,
+    projectsCount: 15,
+    isTopPerformer: false,
+  },
+  {
+    id: "M4",
+    name: "Emily Watson",
+    avatar: "https://i.pravatar.cc/150?u=7",
+    role: "QA Engineer",
+    revenueThisMonth: 9200,
+    revenueAllTime: 112000,
+    projectsCount: 8,
+    isTopPerformer: false,
+  },
+];
+
 export default function ProjectManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const [activeTab, setActiveTab] = useState("pending");
+  const [timeframe, setTimeframe] = useState<"month" | "all">("month");
 
   const filteredProjects = projectsData.filter(p => {
     const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -82,6 +135,15 @@ export default function ProjectManagement() {
       (activeTab === "running" && p.status === "Running");
     return matchesSearch && matchesTab;
   });
+
+  const totalValue = filteredProjects.reduce((acc, p) => acc + parseInt(p.value.replace(/[^0-9]/g, "")), 0);
+  const queueCount = projectsData.filter(p => p.status === "Pending Assignment").length;
+  const runningCount = projectsData.filter(p => p.status === "Running").length;
+  const avgProgress = Math.round(projectsData.filter(p => p.progress).reduce((acc, p) => acc + (p.progress || 0), 0) / runningCount) || 0;
+
+  // Revenue specific calculations
+  const totalRevenue = memberRevenueData.reduce((acc, m) => acc + (timeframe === "month" ? m.revenueThisMonth : m.revenueAllTime), 0);
+  const topEarner = [...memberRevenueData].sort((a, b) => (timeframe === "month" ? b.revenueThisMonth - a.revenueThisMonth : b.revenueAllTime - a.revenueAllTime))[0];
 
   return (
     <motion.div 
@@ -100,12 +162,97 @@ export default function ProjectManagement() {
             <TabsList className="bg-transparent h-9 gap-1">
               <TabsTrigger value="pending" className="rounded-lg px-4 data-[state=active]:bg-white data-[state=active]:shadow-sm text-xs font-semibold">Queue</TabsTrigger>
               <TabsTrigger value="running" className="rounded-lg px-4 data-[state=active]:bg-white data-[state=active]:shadow-sm text-xs font-semibold">Running</TabsTrigger>
+              <TabsTrigger value="revenue" className="rounded-lg px-4 data-[state=active]:bg-white data-[state=active]:shadow-sm text-xs font-semibold">Revenue</TabsTrigger>
             </TabsList>
           </Tabs>
           <Button className="bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg h-10 px-6 shadow-sm">
             <Plus className="mr-2 h-4 w-4" /> New Project
           </Button>
         </div>
+      </div>
+
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {activeTab === "revenue" ? (
+          <>
+            <MetricsCard
+              title="Total Revenue"
+              value={`$${(totalRevenue / 1000).toFixed(1)}k`}
+              icon={DollarSign}
+              trend="+18% growth"
+              up={true}
+              subtitle={timeframe === "month" ? "this monthly cycle" : "all time earnings"}
+              color="emerald"
+            />
+            <MetricsCard
+              title="Top Contributor"
+              value={topEarner.name.split(" ")[0]}
+              icon={Award}
+              trend={`$${( (timeframe === 'month' ? topEarner.revenueThisMonth : topEarner.revenueAllTime) / 1000).toFixed(1)}k`}
+              up={true}
+              subtitle="highest generated"
+              color="brand"
+            />
+            <MetricsCard
+              title="Avg per Member"
+              value={`$${((totalRevenue / memberRevenueData.length) / 1000).toFixed(1)}k`}
+              icon={Activity}
+              trend="Stable"
+              up={true}
+              subtitle="team efficiency"
+              color="violet"
+            />
+            <MetricsCard
+              title="Target Sync"
+              value="92%"
+              icon={Layers}
+              trend="Ahead of schedule"
+              up={true}
+              subtitle="quarterly goal"
+              color="brand"
+              progress={92}
+            />
+          </>
+        ) : (
+          <>
+            <MetricsCard
+              title="Total Volume"
+              value={`$${(totalValue / 1000).toFixed(1)}k`}
+              icon={DollarSign}
+              trend="+12% from last month"
+              up={true}
+              subtitle="filtered total"
+              color="brand"
+            />
+            <MetricsCard
+              title="Active Queue"
+              value={queueCount}
+              icon={Clock}
+              trend="Needs Assignment"
+              up={false}
+              subtitle="awaiting start"
+              color="amber"
+            />
+            <MetricsCard
+              title="Running Projects"
+              value={runningCount}
+              icon={Layers}
+              trend="+2 since Monday"
+              up={true}
+              subtitle="in development"
+              color="emerald"
+            />
+            <MetricsCard
+              title="Avg. Progress"
+              value={`${avgProgress}%`}
+              icon={Activity}
+              trend="On track"
+              up={true}
+              subtitle="execution health"
+              color="brand"
+            />
+          </>
+        )}
       </div>
 
       <Card className="border-slate-200 rounded-xl shadow-sm bg-white overflow-hidden">
@@ -121,22 +268,46 @@ export default function ProjectManagement() {
               />
             </div>
             <div className="flex items-center gap-2">
-              <Button 
-                variant={viewMode === "list" ? "secondary" : "ghost"} 
-                size="sm"
-                onClick={() => setViewMode("list")}
-                className={`h-9 px-3 rounded-lg text-xs font-semibold`}
-              >
-                <List size={14} className="mr-1.5" /> List
-              </Button>
-              <Button 
-                variant={viewMode === "grid" ? "secondary" : "ghost"} 
-                size="sm"
-                onClick={() => setViewMode("grid")}
-                className={`h-9 px-3 rounded-lg text-xs font-semibold`}
-              >
-                <LayoutGrid size={14} className="mr-1.5" /> Grid
-              </Button>
+              {activeTab === "revenue" && (
+                <div className="flex bg-slate-100 p-1 rounded-lg mr-2">
+                   <Button 
+                    variant={timeframe === "month" ? "secondary" : "ghost"} 
+                    size="sm"
+                    onClick={() => setTimeframe("month")}
+                    className={`h-7 px-3 rounded-md text-[10px] font-bold ${timeframe === 'month' ? 'bg-white shadow-sm' : ''}`}
+                  >
+                    This Month
+                  </Button>
+                   <Button 
+                    variant={timeframe === "all" ? "secondary" : "ghost"} 
+                    size="sm"
+                    onClick={() => setTimeframe("all")}
+                    className={`h-7 px-3 rounded-md text-[10px] font-bold ${timeframe === 'all' ? 'bg-white shadow-sm' : ''}`}
+                  >
+                    All Time
+                  </Button>
+                </div>
+              )}
+              {activeTab !== "revenue" && (
+                <>
+                  <Button 
+                    variant={viewMode === "list" ? "secondary" : "ghost"} 
+                    size="sm"
+                    onClick={() => setViewMode("list")}
+                    className={`h-9 px-3 rounded-lg text-xs font-semibold`}
+                  >
+                    <List size={14} className="mr-1.5" /> List
+                  </Button>
+                  <Button 
+                    variant={viewMode === "grid" ? "secondary" : "ghost"} 
+                    size="sm"
+                    onClick={() => setViewMode("grid")}
+                    className={`h-9 px-3 rounded-lg text-xs font-semibold`}
+                  >
+                    <LayoutGrid size={14} className="mr-1.5" /> Grid
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         </CardHeader>
@@ -151,8 +322,10 @@ export default function ProjectManagement() {
             >
               {activeTab === "pending" ? (
                 <QueueTable projects={filteredProjects} />
-              ) : (
+              ) : activeTab === "running" ? (
                 <RunningProjectsTable projects={filteredProjects} />
+              ) : (
+                <MemberRevenueTable data={memberRevenueData} timeframe={timeframe} />
               )}
             </motion.div>
           </AnimatePresence>

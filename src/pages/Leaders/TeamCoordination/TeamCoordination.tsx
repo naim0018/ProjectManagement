@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
+import { MetricsCard } from "@/components/dashboard/MetricsCard";
 
 const teamData = [
   {
@@ -107,39 +108,33 @@ export default function TeamCoordination() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-         <Card className="border-slate-200 rounded-2xl shadow-sm bg-white p-4">
-            <div className="flex items-center gap-4">
-               <div className="h-12 w-12 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600">
-                  <TrendingUp size={24} />
-               </div>
-               <div>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">Avg Efficiency</p>
-                  <p className="text-2xl font-bold text-slate-900 mt-0.5">86.2%</p>
-               </div>
-            </div>
-         </Card>
-         <Card className="border-slate-200 rounded-2xl shadow-sm bg-white p-4">
-            <div className="flex items-center gap-4">
-               <div className="h-12 w-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600">
-                  <Award size={24} />
-               </div>
-               <div>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">Top Performer</p>
-                  <p className="text-2xl font-bold text-slate-900 mt-0.5">Alex Rivera</p>
-               </div>
-            </div>
-         </Card>
-         <Card className="border-slate-200 rounded-2xl shadow-sm bg-white p-4">
-            <div className="flex items-center gap-4">
-               <div className="h-12 w-12 rounded-2xl bg-amber-50 flex items-center justify-center text-amber-600">
-                  <Briefcase size={24} />
-               </div>
-               <div>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">Active Tasks</p>
-                  <p className="text-2xl font-bold text-slate-900 mt-0.5">15</p>
-               </div>
-            </div>
-         </Card>
+        <MetricsCard
+          title="Avg Efficiency"
+          value="86.2%"
+          icon={TrendingUp}
+          trend="+4% from last month"
+          up={true}
+          subtitle="team performance"
+          color="brand"
+        />
+        <MetricsCard
+          title="Top Performer"
+          value="Alex Rivera"
+          icon={Award}
+          trend="Consistent high output"
+          up={true}
+          subtitle="lead developer"
+          color="emerald"
+        />
+        <MetricsCard
+          title="Active Tasks"
+          value="15"
+          icon={Briefcase}
+          trend="Across all projects"
+          up={true}
+          subtitle="workload volume"
+          color="amber"
+        />
       </div>
 
       <Card className="border-slate-200 rounded-2xl shadow-sm bg-white overflow-hidden">

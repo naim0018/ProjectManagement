@@ -5,7 +5,9 @@ import {
   ChevronRight,
   Filter,
   Search,
-  Flag
+  Flag,
+  CheckCircle,
+  Activity
 } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -15,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { MetricsCard } from "@/components/dashboard/MetricsCard";
 
 const issuesData = [
   {
@@ -87,18 +90,43 @@ export default function OrganizationIssues() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-         {[
-           { label: "Critical", count: 1, color: "text-rose-600", bg: "bg-rose-50" },
-           { label: "High Priority", count: 2, color: "text-orange-600", bg: "bg-orange-50" },
-           { label: "Open Issues", count: 3, color: "text-brand-600", bg: "bg-brand-50" },
-           { label: "Resolved Today", count: 5, color: "text-emerald-600", bg: "bg-emerald-50" },
-         ].map((stat, i) => (
-           <Card key={i} className={`border-none rounded-2xl shadow-sm ${stat.bg} p-4`}>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">{stat.label}</p>
-              <p className={`text-2xl font-black ${stat.color} mt-1`}>{stat.count}</p>
-           </Card>
-         ))}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <MetricsCard
+          title="Critical"
+          value="1"
+          icon={AlertTriangle}
+          trend="+50% from yesterday"
+          up={false}
+          subtitle="urgent attention"
+          color="rose"
+        />
+        <MetricsCard
+          title="High Priority"
+          value="2"
+          icon={Activity}
+          trend="-1 from yesterday"
+          up={true}
+          subtitle="blocking progress"
+          color="amber"
+        />
+        <MetricsCard
+          title="Open Issues"
+          value="3"
+          icon={Search}
+          trend="Steady volume"
+          up={true}
+          subtitle="active monitoring"
+          color="brand"
+        />
+        <MetricsCard
+          title="Resolved Today"
+          value="5"
+          icon={CheckCircle}
+          trend="+3 over goal"
+          up={true}
+          subtitle="completion health"
+          color="emerald"
+        />
       </div>
 
       <Card className="border-slate-200 rounded-2xl shadow-sm bg-white overflow-hidden">
