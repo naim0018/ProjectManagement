@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Palette, X, Check, Layout, Sparkles } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Palette, X, Check, Sparkles } from "lucide-react";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const themes = [
   { id: "default", name: "Indigo", color: "#6366f1", class: "" },
@@ -30,7 +30,7 @@ export const ThemeSwitcher = () => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("selected-theme") || "default";
-    const theme = themes.find(t => t.id === savedTheme) || themes[0];
+    const theme = themes.find((t) => t.id === savedTheme) || themes[0];
     applyTheme(theme.class);
     setCurrentTheme(theme.id);
   }, []);
@@ -49,16 +49,18 @@ export const ThemeSwitcher = () => {
             <div className="flex items-center justify-between mb-4 px-1">
               <div className="flex items-center gap-2">
                 <Sparkles size={14} className="text-brand-600" />
-                <span className="text-[10px] font-semibold uppercase text-slate-500 tracking-[0.2em]">Appearance</span>
+                <span className="text-[10px] font-semibold uppercase text-slate-500 tracking-[0.2em]">
+                  Appearance
+                </span>
               </div>
-              <button 
-                onClick={() => setIsOpen(false)} 
+              <button
+                onClick={() => setIsOpen(false)}
                 className="h-6 w-6 rounded-lg flex items-center justify-center text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-all"
               >
                 <X size={14} />
               </button>
             </div>
-            
+
             <div className="grid grid-cols-1 gap-2">
               <TooltipProvider delayDuration={0}>
                 {themes.map((theme) => (
@@ -66,24 +68,32 @@ export const ThemeSwitcher = () => {
                     key={theme.id}
                     onClick={() => changeTheme(theme.id, theme.class)}
                     className={`group w-full px-3 py-2.5 rounded-xl flex items-center justify-between transition-all duration-300 border ${
-                      currentTheme === theme.id 
-                        ? "bg-white border-slate-200 shadow-sm ring-1 ring-slate-100" 
+                      currentTheme === theme.id
+                        ? "bg-white border-slate-200 shadow-sm ring-1 ring-slate-100"
                         : "bg-transparent border-transparent hover:bg-slate-50"
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <div 
-                        className="h-4 w-4 rounded-full shadow-inner ring-2 ring-white" 
+                      <div
+                        className="h-4 w-4 rounded-full shadow-inner ring-2 ring-white"
                         style={{ backgroundColor: theme.color }}
                       />
-                      <span className={`text-sm font-semibold transition-colors ${
-                        currentTheme === theme.id ? "text-slate-900" : "text-slate-500 group-hover:text-slate-700"
-                      }`}>
+                      <span
+                        className={`text-sm font-semibold transition-colors ${
+                          currentTheme === theme.id
+                            ? "text-slate-900"
+                            : "text-slate-500 group-hover:text-slate-700"
+                        }`}
+                      >
                         {theme.name}
                       </span>
                     </div>
                     {currentTheme === theme.id && (
-                      <motion.div layoutId="check" initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                      <motion.div
+                        layoutId="check"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                      >
                         <Check size={14} className="text-brand-600" />
                       </motion.div>
                     )}
@@ -93,10 +103,14 @@ export const ThemeSwitcher = () => {
             </div>
 
             <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between px-1">
-               <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-tight">Active Theme</span>
-               <div className="px-2 py-0.5 bg-brand-50 rounded-md">
-                 <span className="text-[10px] font-bold text-brand-700 uppercase">{currentTheme}</span>
-               </div>
+              <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-tight">
+                Active Theme
+              </span>
+              <div className="px-2 py-0.5 bg-brand-50 rounded-md">
+                <span className="text-[10px] font-bold text-brand-700 uppercase">
+                  {currentTheme}
+                </span>
+              </div>
             </div>
           </motion.div>
         )}
@@ -111,7 +125,10 @@ export const ThemeSwitcher = () => {
         }`}
       >
         <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-        <Palette size={24} className={`text-white transition-transform duration-500 ${isOpen ? "rotate-12 scale-110" : ""}`} />
+        <Palette
+          size={24}
+          className={`text-white transition-transform duration-500 ${isOpen ? "rotate-12 scale-110" : ""}`}
+        />
         {!isOpen && (
           <span className="absolute -top-1 -right-1 flex h-4 w-4">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
