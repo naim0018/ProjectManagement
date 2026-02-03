@@ -1,21 +1,19 @@
-import { useState } from "react";
 import { 
-  Briefcase, 
   CheckCircle2, 
   Clock, 
   Plus,
-  ArrowUpRight,
   ChevronRight,
   TrendingUp,
   Layout,
-  FileText,
-  Zap,
   Star
 } from "lucide-react";
+
 import { motion } from "framer-motion";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { MetricsCard } from "@/components/dashboard/MetricsCard";
 import { Badge } from "@/components/ui/badge";
+
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -25,9 +23,12 @@ const teamMemberData = {
   name: "Alex Rivera",
   role: "Senior Full Stack Developer",
   impactScore: 94,
-  activeTasks: 12,
-  completedTasks: 156,
-  hoursLogged: 32,
+  stats: {
+    totalProjects: 12,
+    projectsThisMonth: 4,
+    revenueProgress: 85,
+    completedProjects: 156
+  },
   projects: [
     { id: 1, name: "Solaris ERP", role: "Module Lead", progress: 78, status: "Active", urgency: "High", color: "brand" },
     { id: 2, name: "Nexus API", role: "Contributor", progress: 45, status: "Review", urgency: "Medium", color: "emerald" },
@@ -67,59 +68,89 @@ const TeamMemberDashboard = () => {
               </div>
            </div>
         </div>
-        
-        <div className="flex flex-wrap items-center gap-4">
-           <Card className="bg-white border-slate-200 rounded-xl shadow-sm p-3.5 flex items-center gap-4 hover:scale-[1.02] transition-all cursor-default min-w-[180px]">
-              <div className="h-10 w-10 bg-brand-50 rounded-lg flex items-center justify-center text-brand-600 border border-brand-100/50">
-                 <Star size={20} fill="currentColor" opacity={0.2} />
-              </div>
-              <div>
-                 <p className="text-[10px] uppercase font-semibold text-slate-400 tracking-widest">Impact Score</p>
-                 <div className="flex items-end gap-1">
-                    <span className="text-xl font-semibold text-slate-900 leading-none">{teamMemberData.impactScore}</span>
-                    <span className="text-[10px] text-emerald-600 font-semibold mb-0.5">+2.4%</span>
-                 </div>
-              </div>
-           </Card>
-           <Button className="h-11 px-6 bg-slate-900 hover:bg-slate-800 rounded-lg shadow-sm hover:scale-[1.02] transition-all font-semibold text-white">
-              <Zap className="mr-2 h-4 w-4" />
-              Log Activity
-           </Button>
-        </div>
       </div>
 
       {/* Stats Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
          {[
-           { label: "Tasks active", val: teamMemberData.activeTasks, icon: Layout, color: "text-brand-600", bg: "bg-brand-50" },
-           { label: "Completed", val: teamMemberData.completedTasks, icon: CheckCircle2, color: "text-emerald-600", bg: "bg-emerald-50" },
-           { label: "Hours Q1", val: teamMemberData.hoursLogged, icon: FileText, color: "text-violet-600", bg: "bg-violet-50" },
+           { 
+             title: "Total Project", 
+             value: teamMemberData.stats.totalProjects, 
+             icon: Layout, 
+             trend: "+2 new", 
+             up: true,
+             subtitle: "active contributions",
+             color: "brand" as const
+           },
+           { 
+             title: "This Month", 
+             value: teamMemberData.stats.projectsThisMonth, 
+             icon: Clock, 
+             trend: "On track", 
+             up: true,
+             subtitle: "timeline adherence",
+             color: "amber" as const
+           },
+           { 
+             title: "Completed", 
+             value: teamMemberData.stats.completedProjects, 
+             icon: CheckCircle2, 
+             trend: "+12%", 
+             up: true,
+             subtitle: "vs last quarter",
+             color: "emerald" as const
+           },
+           { 
+             title: "Impact Score", 
+             value: teamMemberData.impactScore, 
+             icon: Star, 
+             trend: "Top 5%", 
+             up: true,
+             subtitle: "org percentile",
+             color: "violet" as const
+           },
+           {
+             title: "Monthly Revenue Goal",
+             value: `${teamMemberData.stats.revenueProgress}%`,
+             icon: TrendingUp,
+             trend: "৳45k Target",
+             up: true,
+             subtitle: "completion rate",
+             color: "emerald" as const,
+             progress: teamMemberData.stats.revenueProgress
+           }
          ].map((stat, i) => (
-           <Card key={i} className="border-slate-200 rounded-xl shadow-sm hover:scale-[1.02] transition-all bg-white overflow-hidden p-5 flex items-center gap-5">
-              <div className={`h-12 w-12 ${stat.bg} ${stat.color} rounded-lg flex items-center justify-center border border-slate-100`}>
-                 <stat.icon size={22} />
-              </div>
-              <div>
-                 <p className="text-sm font-semibold text-slate-500 leading-none mb-1.5">{stat.label}</p>
-                 <h3 className="text-2xl font-semibold text-slate-900">{stat.val}</h3>
-              </div>
-           </Card>
+           <MetricsCard
+             key={i}
+             title={stat.title}
+             value={stat.value}
+             icon={stat.icon}
+             trend={stat.trend}
+             up={stat.up}
+             subtitle={stat.subtitle}
+             color={stat.color}
+             progress={stat.progress}
+           />
          ))}
+
+         
       </div>
+
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
          {/* Main Project Area */}
          <div className="lg:col-span-3 space-y-6">
             <Tabs defaultValue="projects" className="w-full">
-               <div className="flex items-center justify-between mb-6 border-b border-slate-100 pb-2">
-                  <TabsList className="bg-transparent h-auto p-0 gap-8 border-none">
-                     <TabsTrigger value="projects" className="bg-transparent px-0 py-3 text-sm font-semibold text-slate-400 data-[state=active]:text-brand-600 data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-brand-600 rounded-none transition-all">My Projects</TabsTrigger>
-                     <TabsTrigger value="requests" className="bg-transparent px-0 py-3 text-sm font-semibold text-slate-400 data-[state=active]:text-brand-600 data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-brand-600 rounded-none transition-all">Issue Board</TabsTrigger>
+               <div className="flex items-center justify-between mb-6">
+                  <TabsList variant="line">
+                     <TabsTrigger value="projects">My Projects</TabsTrigger>
+                     <TabsTrigger value="requests">Issue Board</TabsTrigger>
                   </TabsList>
                   <Button variant="ghost" size="sm" className="text-slate-400 font-semibold rounded-lg hover:text-brand-600">
                      View All <ChevronRight size={14} className="ml-1" />
                   </Button>
                </div>
+
 
                <TabsContent value="projects" className="mt-0">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -143,7 +174,8 @@ const TeamMemberDashboard = () => {
                                     <span className="text-slate-400 uppercase tracking-tighter">SPRINT PROGRESS</span>
                                     <span className="text-slate-900">{project.progress}%</span>
                                  </div>
-                                 <Progress value={project.progress} className="h-1 shadow-none bg-slate-100" />
+                                  <Progress value={project.progress} showValue className="h-1.5 shadow-none bg-slate-100" />
+
                               </div>
                               <div className="flex items-center justify-between pt-2 border-t border-slate-50">
                                  <div className="flex -space-x-2">

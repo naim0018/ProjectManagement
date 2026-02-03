@@ -1,4 +1,4 @@
-import { AdminDashboardData, TeamMemberDashboardData, UserRole } from './dashboard.types';
+import { AdminDashboardData, TeamMemberDashboardData } from './dashboard.types';
 
 export const mockAdminData: AdminDashboardData = {
   totalOrganizations: 5,

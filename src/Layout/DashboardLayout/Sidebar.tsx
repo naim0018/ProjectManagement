@@ -25,9 +25,19 @@ const NavItem = ({
   const hasChildren = !!item.children?.length;
 
   const isRouteActive = (item: MenuItem, currentPath: string): boolean => {
-    if (item.path && currentPath === item.path) return true;
-    if (item.children)
+    if (!item.path) return false;
+    
+    // Exact match
+    if (currentPath === item.path) return true;
+    
+    // Child route match (e.g., /team/projects/details matches /team/projects)
+    if (currentPath.startsWith(item.path + "/")) return true;
+
+    // Check children recursively
+    if (item.children) {
       return item.children.some((child) => isRouteActive(child, currentPath));
+    }
+    
     return false;
   };
 

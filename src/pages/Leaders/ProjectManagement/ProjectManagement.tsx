@@ -158,13 +158,14 @@ export default function ProjectManagement() {
           <p className="text-slate-500 text-sm mt-1">Manage intake queue and monitor active execution phases.</p>
         </div>
         <div className="flex items-center gap-3">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="bg-slate-100 p-1 rounded-xl">
-            <TabsList className="bg-transparent h-9 gap-1">
-              <TabsTrigger value="pending" className="rounded-lg px-4 data-[state=active]:bg-white data-[state=active]:shadow-sm text-xs font-semibold">Queue</TabsTrigger>
-              <TabsTrigger value="running" className="rounded-lg px-4 data-[state=active]:bg-white data-[state=active]:shadow-sm text-xs font-semibold">Running</TabsTrigger>
-              <TabsTrigger value="revenue" className="rounded-lg px-4 data-[state=active]:bg-white data-[state=active]:shadow-sm text-xs font-semibold">Revenue</TabsTrigger>
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <TabsList>
+              <TabsTrigger value="pending">Queue</TabsTrigger>
+              <TabsTrigger value="running">Running</TabsTrigger>
+              <TabsTrigger value="revenue">Revenue</TabsTrigger>
             </TabsList>
           </Tabs>
+
           <Button className="bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg h-10 px-6 shadow-sm">
             <Plus className="mr-2 h-4 w-4" /> New Project
           </Button>
