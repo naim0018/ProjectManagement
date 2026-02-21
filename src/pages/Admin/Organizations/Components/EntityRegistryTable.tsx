@@ -69,7 +69,7 @@ export const EntityRegistryTable = ({ organizations, searchTerm, onSearchChange 
           <TableBody>
             {organizations.filter(org => org.name.toLowerCase().includes(searchTerm.toLowerCase())).map((org) => (
               <TableRow key={org.id} className="border-slate-100 hover:bg-slate-50/50 transition-colors group">
-                <TableCell className="px-6 py-4">
+                <TableCell className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <div className="h-10 w-10 rounded-lg bg-brand-50 flex items-center justify-center text-brand-600 font-semibold border border-brand-100">
                       {org.logo}
@@ -80,7 +80,7 @@ export const EntityRegistryTable = ({ organizations, searchTerm, onSearchChange 
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="px-6 py-4">
+                <TableCell className="px-4 py-3">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1.5 text-slate-600">
                       <Users size={14} className="text-slate-400" />
@@ -92,20 +92,20 @@ export const EntityRegistryTable = ({ organizations, searchTerm, onSearchChange 
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="px-6 py-4">
+                <TableCell className="px-4 py-3">
                   <div className="flex items-center gap-1.5 text-slate-500">
                     <MapPin size={14} />
                     <span className="text-xs font-normal">{org.location}</span>
                   </div>
                 </TableCell>
-                <TableCell className="px-6 py-4">
+                <TableCell className="px-4 py-3">
                   <Badge variant="outline" className={`rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest border-none ${
                       org.status === 'Active' ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'
                   }`}>
                     {org.status}
                   </Badge>
                 </TableCell>
-                <TableCell className="px-6 py-4 text-right">
+                <TableCell className="px-4 py-3 text-right">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-slate-600 rounded-lg">

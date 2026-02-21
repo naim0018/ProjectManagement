@@ -70,7 +70,7 @@ export const UserDirectoryTable = ({ users, searchTerm, onSearchChange }: UserDi
           <TableBody>
             {users.filter(u => u.name.toLowerCase().includes(searchTerm.toLowerCase()) || u.org.toLowerCase().includes(searchTerm.toLowerCase())).map((user) => (
               <TableRow key={user.id} className="border-slate-100 hover:bg-slate-50/50 transition-colors group">
-                <TableCell className="px-6 py-4">
+                <TableCell className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <Avatar className="h-9 w-9 border border-slate-200 shadow-sm">
                       <AvatarImage src={user.avatar} />
@@ -82,13 +82,13 @@ export const UserDirectoryTable = ({ users, searchTerm, onSearchChange }: UserDi
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="px-6 py-4">
+                <TableCell className="px-4 py-3">
                   <div className="flex items-center gap-2 text-slate-600">
                     <Shield size={14} className="text-brand-500" />
                     <span className="text-xs font-semibold">{user.org}</span>
                   </div>
                 </TableCell>
-                <TableCell className="px-6 py-4">
+                <TableCell className="px-4 py-3">
                   <Badge variant="outline" className={`rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest border-none ${
                       user.role === 'Admin' ? 'bg-brand-50 text-brand-700' :
                       user.role === 'Leader' ? 'bg-violet-50 text-violet-700' :
@@ -97,13 +97,13 @@ export const UserDirectoryTable = ({ users, searchTerm, onSearchChange }: UserDi
                     {user.role}
                   </Badge>
                 </TableCell>
-                <TableCell className="px-6 py-4">
+                <TableCell className="px-4 py-3">
                   <div className="flex items-center gap-1.5 text-slate-500">
                     <Calendar size={14} />
                     <span className="text-xs font-normal">{user.lastLogin}</span>
                   </div>
                 </TableCell>
-                <TableCell className="px-6 py-4 text-right">
+                <TableCell className="px-4 py-3 text-right">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-slate-600 rounded-lg">

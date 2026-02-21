@@ -47,18 +47,18 @@ export const IntakeQueueTable = ({ projects, pendingCount }: IntakeQueueTablePro
           <TableBody>
             {projects.map((project) => (
               <TableRow key={project.id} className="border-slate-100 hover:bg-slate-50/50 transition-colors h-16">
-                <TableCell className="px-6 py-4 text-sm font-semibold text-slate-900 whitespace-nowrap">{project.clientName}</TableCell>
-                <TableCell className="px-6 py-4 text-[11px] font-semibold text-brand-600 uppercase tracking-tight whitespace-nowrap">{project.profileName}</TableCell>
-                <TableCell className="px-6 py-4 text-center">
+                <TableCell className="px-4 py-3 text-sm font-semibold text-slate-900 whitespace-nowrap">{project.clientName}</TableCell>
+                <TableCell className="px-4 py-3 text-[11px] font-semibold text-brand-600 uppercase tracking-tight whitespace-nowrap">{project.profileName}</TableCell>
+                <TableCell className="px-4 py-3 text-center">
                    <div className="inline-flex items-center gap-1 bg-amber-50 text-amber-600 px-2 py-0.5 rounded border border-amber-100">
                       <div className="size-1 rounded-full bg-amber-500" />
                       <span className="text-[10px] font-bold uppercase">{project.currentPhase}</span>
                    </div>
                 </TableCell>
-                <TableCell className="px-6 py-4 text-center text-[11px] font-semibold text-slate-500 whitespace-nowrap">{project.startDate}</TableCell>
-                <TableCell className="px-6 py-4 text-center text-[11px] font-semibold text-rose-500 whitespace-nowrap">{project.deliveryDate}</TableCell>
-                <TableCell className="px-6 py-4 text-center text-sm font-semibold text-emerald-600 whitespace-nowrap">{project.value}</TableCell>
-                <TableCell className="px-6 py-4 text-right">
+                <TableCell className="px-4 py-3 text-center text-[11px] font-semibold text-slate-500 whitespace-nowrap">{project.startDate}</TableCell>
+                <TableCell className="px-4 py-3 text-center text-[11px] font-semibold text-rose-500 whitespace-nowrap">{project.deliveryDate}</TableCell>
+                <TableCell className="px-4 py-3 text-center text-sm font-semibold text-emerald-600 whitespace-nowrap">{project.value}</TableCell>
+                <TableCell className="px-4 py-3 text-right">
                   <Button variant="ghost" className="h-8 px-3 text-xs font-semibold text-brand-600 hover:text-brand-700 hover:bg-brand-50 rounded-lg">
                     Assign Member
                   </Button>

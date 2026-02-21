@@ -3,14 +3,21 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+import { AdminThemeProvider, useAdminTheme } from "@/context/AdminThemeContext";
 
-const DashboardLayout = () => {
+// Inner component so it can consume the context
+const AdminShell = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const { isDark } = useAdminTheme();
 
   return (
-    <div className="flex min-h-screen bg-slate-50 overflow-hidden h-screen">
+    <div
+      className={`flex min-h-screen overflow-hidden h-screen transition-colors duration-300 ${
+        isDark ? "admin-dark bg-[#0f1117]" : "bg-slate-50"
+      }`}
+    >
       <ThemeSwitcher />
-      
+
       {/* Sidebar with state */}
       <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
 
@@ -27,5 +34,11 @@ const DashboardLayout = () => {
     </div>
   );
 };
+
+const DashboardLayout = () => (
+  <AdminThemeProvider>
+    <AdminShell />
+  </AdminThemeProvider>
+);
 
 export default DashboardLayout;

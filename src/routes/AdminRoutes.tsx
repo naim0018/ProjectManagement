@@ -12,6 +12,9 @@ import Overview from "@/pages/Admin/Dashboard/Overview";
 import Organizations from "@/pages/Admin/Organizations/Organizations";
 import UserManagement from "@/pages/Admin/Users/UserManagement";
 import Projects from "@/pages/Admin/Projects/Projects";
+import Reports from "@/pages/Admin/Reports/Reports";
+import ActivityLog from "@/pages/Admin/ActivityLog/ActivityLog";
+import Settings from "@/pages/Admin/Settings/Settings";
 
 export const adminRoutes = [
   {
@@ -50,13 +53,13 @@ export const adminRoutes = [
         icon: <AlertTriangle className="size-5" />,
         name: "Incident Reports",
         path: "incidents",
-        element: <Overview />, // Placeholder
+        element: <Reports />,
       },
       {
         icon: <History className="size-5" />,
         name: "Activity Log",
         path: "logs",
-        element: <Overview />, // Placeholder
+        element: <ActivityLog />,
       },
     ],
   },
@@ -67,7 +70,7 @@ export const adminRoutes = [
         icon: <SettingsIcon className="size-5" />,
         name: "Settings",
         path: "settings",
-        element: <Overview />, // Placeholder
+        element: <Settings />,
       },
     ],
   },

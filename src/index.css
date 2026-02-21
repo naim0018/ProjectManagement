@@ -167,3 +167,189 @@
 
 .no-scrollbar::-webkit-scrollbar { display: none !important; }
 .no-scrollbar { -ms-overflow-style: none !important; scrollbar-width: none !important; }
+
+/* ── Admin-scoped dark mode ─────────────────────────────────────────────────── */
+/* Applied by adding .admin-dark to the DashboardLayout root div.               */
+/* All tokens below are scoped so they never affect non-admin pages.            */
+
+.admin-dark {
+  /* Surface tokens */
+  --adm-bg:          #0f1117;
+  --adm-surface:     #161b27;
+  --adm-surface-2:   #1c2336;
+  --adm-border:      #2a3347;
+  --adm-border-soft: #222a3a;
+
+  /* Text tokens - Maximum visibility */
+  --adm-text-primary:   #ffffff;
+  --adm-text-secondary: #e2e8f0; /* Slate 200 */
+  --adm-text-muted:     #94a3b8; /* Slate 400 */
+  --adm-text-dim:       #64748b; /* Slate 500 */
+
+  /* Accent (inherits brand colour) */
+  --adm-accent: var(--color-brand-600);
+
+  color-scheme: dark;
+}
+
+/* Root shell */
+.admin-dark,
+.admin-dark main {
+  background-color: var(--adm-bg);
+  color: var(--adm-text-primary);
+}
+
+/* ── Sidebar ─────────────────────────────────────── */
+.admin-dark aside {
+  background-color: var(--adm-surface) !important;
+  border-color: var(--adm-border) !important;
+}
+.admin-dark aside h2,
+.admin-dark aside p {
+  color: var(--adm-text-secondary);
+}
+/* Inactive nav items */
+.admin-dark aside a.text-slate-500,
+.admin-dark aside div.text-slate-500 {
+  color: var(--adm-text-secondary);
+}
+.admin-dark aside a:hover,
+.admin-dark aside div:hover {
+  background-color: var(--adm-surface-2) !important;
+  color: var(--adm-text-primary) !important;
+}
+/* Section group label */
+.admin-dark aside p.text-slate-400 {
+  color: var(--adm-text-muted) !important;
+}
+/* User card at bottom */
+.admin-dark aside .bg-slate-50\/50 {
+  background-color: var(--adm-surface-2) !important;
+  border-color: var(--adm-border) !important;
+}
+.admin-dark aside .text-slate-800 { color: var(--adm-text-primary) !important; }
+.admin-dark aside .border-slate-100 { border-color: var(--adm-border) !important; }
+.admin-dark aside .border-slate-200 { border-color: var(--adm-border) !important; }
+.admin-dark aside .bg-white { background-color: var(--adm-surface-2) !important; }
+
+/* ── Header ─────────────────────────────────────── */
+.admin-dark header {
+  background-color: rgba(22, 27, 39, 0.85) !important;
+  border-color: var(--adm-border) !important;
+}
+.admin-dark header input {
+  background-color: var(--adm-surface-2) !important;
+  border-color: var(--adm-border) !important;
+  color: var(--adm-text-primary) !important;
+}
+.admin-dark header input::placeholder { color: var(--adm-text-muted) !important; }
+.admin-dark header .text-slate-900 { color: var(--adm-text-primary) !important; }
+.admin-dark header .text-slate-400 { color: var(--adm-text-secondary) !important; }
+.admin-dark header .text-slate-500 { color: var(--adm-text-secondary) !important; }
+.admin-dark header .bg-slate-100\/50 { background-color: var(--adm-surface-2) !important; }
+.admin-dark header .border-slate-200 { border-color: var(--adm-border) !important; }
+.admin-dark header .bg-slate-200 { background-color: var(--adm-border) !important; }
+
+/* ── Cards & shared surfaces ─────────────────────── */
+.admin-dark .bg-white {
+  background-color: var(--adm-surface) !important;
+}
+.admin-dark .bg-slate-50,
+.admin-dark .bg-slate-50\/50,
+.admin-dark .bg-slate-50\/30 {
+  background-color: var(--adm-surface-2) !important;
+}
+.admin-dark .border-slate-100,
+.admin-dark .border-slate-200 {
+  border-color: var(--adm-border) !important;
+}
+.admin-dark .border-slate-100\/50 { border-color: var(--adm-border-soft) !important; }
+
+/* ── Text ─────────────────────────────────────────── */
+.admin-dark .text-slate-900 { color: var(--adm-text-primary)   !important; }
+.admin-dark .text-slate-800 { color: var(--adm-text-primary)   !important; }
+.admin-dark .text-slate-700 { color: var(--adm-text-secondary) !important; }
+.admin-dark .text-slate-600 { color: var(--adm-text-secondary) !important; }
+.admin-dark .text-slate-500 { color: var(--adm-text-muted)     !important; }
+.admin-dark .text-slate-400 { color: var(--adm-text-muted)     !important; }
+
+/* ── Inputs & form controls ──────────────────────── */
+.admin-dark input,
+.admin-dark textarea,
+.admin-dark select {
+  background-color: var(--adm-surface-2) !important;
+  border-color: var(--adm-border)        !important;
+  color: var(--adm-text-primary)         !important;
+}
+.admin-dark input::placeholder,
+.admin-dark textarea::placeholder { color: var(--adm-text-muted) !important; }
+
+/* ── Tables ──────────────────────────────────────── */
+.admin-dark .hover\:bg-slate-50\/50:hover { background-color: var(--adm-surface-2) !important; }
+.admin-dark .hover\:bg-slate-50:hover     { background-color: var(--adm-surface-2) !important; }
+
+/* ── Buttons ─────────────────────────────────────── */
+.admin-dark .bg-slate-100 { background-color: var(--adm-surface-2) !important; }
+.admin-dark .hover\:bg-slate-50:hover  { background-color: var(--adm-surface-2) !important; }
+.admin-dark .hover\:bg-slate-100:hover { background-color: var(--adm-border)    !important; }
+
+/* Settings sidebar active item */
+.admin-dark .bg-brand-50 { background-color: rgba(79,70,229,0.15) !important; }
+
+/* Scrollbar tint */
+.admin-dark *::-webkit-scrollbar-thumb { background: #2a3347; }
+.admin-dark *::-webkit-scrollbar-thumb:hover { background: #3b4a65; }
+
+/* ── Global Table Compactness ────────────────────── */
+/* Tighten table spacing as requested */
+.admin-dark .px-6.py-4 {
+  padding-top: 0.625rem !important; /* py-2.5 */
+  padding-bottom: 0.625rem !important;
+}
+
+/* Ensure modals follow dark theme if they are generated via portals */
+/* We can specifically target the data-slot attributes used in our UI components */
+body:has(.admin-dark) [data-slot="dialog-content"] {
+  background-color: #161b27 !important; /* --adm-surface */
+  border-color: #2a3347 !important;     /* --adm-border */
+  color: #f8fafc !important;            /* --adm-text-primary */
+}
+
+body:has(.admin-dark) [data-slot="dialog-title"] {
+  color: #f8fafc !important;
+}
+
+body:has(.admin-dark) [data-slot="dialog-description"] {
+  color: #94a3b8 !important; /* --adm-text-muted */
+}
+
+body:has(.admin-dark) [data-slot="dialog-overlay"] {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Fix visibility in Incident Feed and other components using specific slate classes */
+.admin-dark .text-slate-700 { color: var(--adm-text-secondary) !important; }
+.admin-dark .text-slate-600 { color: var(--adm-text-secondary) !important; }
+.admin-dark .text-slate-500 { color: var(--adm-text-muted) !important; }
+.admin-dark .text-slate-400 { color: var(--adm-text-muted) !important; }
+.admin-dark .text-slate-300 { color: var(--adm-text-dim) !important; }
+
+/* Re-apply bright primary for 900/800 */
+.admin-dark .text-slate-900,
+.admin-dark .text-slate-800 {
+  color: var(--adm-text-primary) !important;
+}
+
+/* Global Table Compactness - Admin wide */
+.admin-dark table td,
+.admin-dark table th {
+  padding-top: 0.625rem !important; /* py-2.5 */
+  padding-bottom: 0.625rem !important;
+  padding-left: 1rem !important;    /* px-4 */
+  padding-right: 1rem !important;
+}
+
+/* Specific fix for the 'px-6 py-4' pattern often used in cards */
+.admin-dark .px-6.py-4 {
+  padding: 0.625rem 1rem !important;
+}

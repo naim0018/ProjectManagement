@@ -51,13 +51,13 @@ export const PendingProjectsTable = () => {
         <Table>
           <TableHeader className="bg-slate-50/30">
             <TableRow className="border-slate-100 hover:bg-transparent">
-              <TableHead className="px-6 h-10 text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+              <TableHead className="px-4 h-9 text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
                 Project
               </TableHead>
-              <TableHead className="px-6 h-10 text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+              <TableHead className="px-4 h-9 text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
                 Client
               </TableHead>
-              <TableHead className="px-6 h-10 text-[10px] font-semibold text-slate-500 uppercase tracking-widest text-right">
+              <TableHead className="px-4 h-9 text-[10px] font-semibold text-slate-500 uppercase tracking-widest text-right">
                 Est. Value
               </TableHead>
             </TableRow>
@@ -68,7 +68,7 @@ export const PendingProjectsTable = () => {
                 key={p.id}
                 className="border-slate-100 hover:bg-slate-50/50 transition-colors cursor-pointer group"
               >
-                <TableCell className="px-6 py-4">
+                <TableCell className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <div className="h-8 w-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100">
                       <Clock size={14} />
@@ -83,12 +83,12 @@ export const PendingProjectsTable = () => {
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="px-6 py-4">
+                <TableCell className="px-4 py-3">
                   <span className="text-sm font-semibold text-slate-600">
                     {p.org}
                   </span>
                 </TableCell>
-                <TableCell className="px-6 py-4 text-right">
+                <TableCell className="px-4 py-3 text-right">
                   <span className="text-sm font-semibold text-slate-900">
                     {p.value}
                   </span>

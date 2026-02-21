@@ -23,9 +23,9 @@ export const IncidentFeed = ({ issues }: IncidentFeedProps) => {
           Live critical system blockers.
         </p>
       </CardHeader>
-      <CardContent className="p-6 flex-1">
+      <CardContent className="p-4 flex-1">
         <VerticalSlider items={issues} />
-        <div className="mt-6 pt-6 border-t border-slate-100 space-y-4">
+        <div className="mt-4 pt-4 border-t border-slate-100 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Archive size={16} className="text-slate-400" />

@@ -6,18 +6,21 @@ import {
   Settings,
   LogOut,
   PanelLeftClose,
-  PanelLeft
+  PanelLeft,
+  Moon,
+  Sun,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuLabel, 
-  DropdownMenuSeparator, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useAdminTheme } from "@/context/AdminThemeContext";
 
 interface HeaderProps {
   isCollapsed: boolean;
@@ -25,13 +28,15 @@ interface HeaderProps {
 }
 
 const Header = ({ isCollapsed, setIsCollapsed }: HeaderProps) => {
+  const { isDark, toggleDark } = useAdminTheme();
+
   return (
     <header className="h-16 bg-white/70 backdrop-blur-xl border-b border-slate-200 flex items-center justify-between px-8 sticky top-0 z-30 transition-all duration-500 shadow-sm">
       {/* Left Area: Toggle & Search */}
       <div className="flex items-center gap-6 flex-1">
-        <Button 
-          variant="ghost" 
-          size="icon" 
+        <Button
+          variant="ghost"
+          size="icon"
           onClick={() => setIsCollapsed(!isCollapsed)}
           className="h-9 w-9 text-slate-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all"
         >
@@ -49,7 +54,17 @@ const Header = ({ isCollapsed, setIsCollapsed }: HeaderProps) => {
       </div>
 
       {/* Right Side Actions */}
-      <div className="flex items-center gap-4 ml-auto">
+      <div className="flex items-center gap-3 ml-auto">
+        {/* Dark mode toggle */}
+        <button
+          onClick={toggleDark}
+          title={isDark ? "Switch to Light mode" : "Switch to Dark mode"}
+          className="p-2 text-slate-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all group"
+        >
+          {isDark ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
+
+        {/* Notifications */}
         <button className="p-2 text-slate-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all relative group">
           <Bell size={18} />
           <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-brand-600 rounded-full ring-2 ring-white"></span>
