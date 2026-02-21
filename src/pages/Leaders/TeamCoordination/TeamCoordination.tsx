@@ -138,8 +138,8 @@ export default function TeamCoordination() {
         />
       </div>
 
-      <Card className="border-slate-200 rounded-2xl shadow-sm bg-white overflow-hidden">
-        <CardHeader className="p-4 border-b border-slate-100 bg-slate-50/50">
+      <Card className="border-slate-200 rounded-xl shadow-sm bg-white py-0 overflow-hidden gap-0">
+        <CardHeader className="pt-4 pb-2 border-b border-slate-100 bg-slate-50/30">
            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
              <div className="relative w-full md:w-96">
                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />

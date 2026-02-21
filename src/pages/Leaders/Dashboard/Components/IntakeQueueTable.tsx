@@ -21,7 +21,7 @@ interface IntakeQueueTableProps {
 
 export const IntakeQueueTable = ({ projects, pendingCount }: IntakeQueueTableProps) => {
   return (
-    <Card className="lg:col-span-2 border-slate-200 rounded-xl shadow-sm bg-white py-0 overflow-hidden">
+    <Card className="lg:col-span-2 border-slate-200 rounded-xl shadow-sm bg-white py-0 overflow-hidden gap-0">
       <CardHeader className="flex flex-row items-center justify-between border-b border-slate-100 bg-slate-50/50 pt-4 pb-2">
         <div>
           <h2 className="text-lg font-semibold text-slate-900 leading-none">Newly Added (Queue)</h2>
