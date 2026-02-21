@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import ProjectList from "./ProjectList";
 import ProjectTimelineDetails from "./ProjectTimelineDetails";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 const projectsData = [
   {
@@ -64,7 +65,13 @@ export default function ActivityTimeline() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
 
   return (
-    <div className="px-4 py-6">
+    <div className="space-y-6">
+      {!selectedProject && (
+        <PageHeader 
+          title="Operational Timeline"
+          subtitle="Real-time pulse of project lifecycles and delivery phases."
+        />
+      )}
       <AnimatePresence mode="wait">
         {selectedProject ? (
           <ProjectTimelineDetails 

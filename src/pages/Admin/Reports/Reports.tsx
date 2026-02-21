@@ -28,6 +28,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MetricsCard } from "@/components/dashboard/MetricsCard";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 // ─── Mock data ────────────────────────────────────────────────────────────────
 const monthlyRevenue = [
@@ -116,42 +117,38 @@ export default function Reports() {
       className="space-y-8 pb-10"
     >
       {/* ── Header ── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 mb-1">
-            Reports &amp; Analytics
-          </h1>
-          <p className="text-slate-500 font-normal">
-            Aggregated performance, delivery, and financial intelligence.
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          {/* Period switcher */}
-          <div className="flex items-center gap-1 bg-slate-100 rounded-lg p-1">
-            {periods.map((p) => (
-              <button
-                key={p}
-                onClick={() => setActivePeriod(p)}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-md capitalize transition-all ${
-                  activePeriod === p
-                    ? "bg-white text-slate-900 shadow-sm"
-                    : "text-slate-500 hover:text-slate-700"
-                }`}
-              >
-                {p}
-              </button>
-            ))}
-          </div>
-          <Button
-            variant="outline"
-            size="sm"
-            className="h-9 gap-2 border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 rounded-lg"
-          >
-            <Download size={14} />
-            Export
-          </Button>
-        </div>
-      </div>
+      <PageHeader 
+        title="Reports & Analytics"
+        subtitle="Aggregated performance, delivery, and financial intelligence."
+        renderActions={() => (
+          <>
+            {/* Period switcher */}
+            <div className="flex items-center gap-1 bg-slate-100 rounded-lg p-1">
+              {periods.map((p) => (
+                <button
+                  key={p}
+                  onClick={() => setActivePeriod(p)}
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-md capitalize transition-all ${
+                    activePeriod === p
+                      ? "bg-white text-slate-900 shadow-sm"
+                      : "text-slate-500 hover:text-slate-700"
+                  }`}
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-9 gap-2 border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 rounded-lg"
+            >
+              <Download size={14} />
+              Export
+            </Button>
+          </>
+        )}
+      />
 
       {/* ── Summary Cards ── */}
       <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">

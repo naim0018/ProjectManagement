@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 const teamMemberData = {
   name: "Alex Rivera",
@@ -50,25 +51,16 @@ const TeamMemberDashboard = () => {
       className="space-y-8"
     >
       {/* Header / Impact Section */}
-      <div className="flex flex-col lg:flex-row gap-8 items-start lg:items-center justify-between">
-        <div className="flex items-center gap-6">
-           <Avatar className="h-20 w-20 border-2 border-white shadow-md ring-1 ring-slate-200">
+      <PageHeader 
+        title={`Welcome back, ${teamMemberData.name.split(' ')[0]}!`}
+        subtitle={`${teamMemberData.role} • Week 4 of Q1 Sprint`}
+        renderActions={() => (
+           <Avatar className="h-16 w-16 border-2 border-white shadow-md ring-1 ring-slate-200">
               <AvatarImage src="https://i.pravatar.cc/150?u=alex" />
               <AvatarFallback className="text-xl font-semibold">AR</AvatarFallback>
            </Avatar>
-           <div>
-              <h1 className="text-2xl font-semibold text-slate-900 tracking-tight leading-none mb-1">Welcome back, {teamMemberData.name.split(' ')[0]}!</h1>
-              <div className="flex flex-wrap items-center gap-3 mt-2">
-                 <Badge variant="secondary" className="bg-brand-50 text-brand-700 hover:bg-brand-100 font-semibold rounded-lg px-2.5 py-0.5">
-                    {teamMemberData.role}
-                 </Badge>
-                 <div className="flex items-center gap-1.5 text-xs text-slate-500 font-normal">
-                    <Clock size={14} /> Week 4 of Q1 Sprint
-                 </div>
-              </div>
-           </div>
-        </div>
-      </div>
+        )}
+      />
 
       {/* Stats Summary */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">

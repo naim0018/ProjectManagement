@@ -16,6 +16,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MetricsCard } from "@/components/dashboard/MetricsCard";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 type ActivityCategory = "all" | "project" | "user" | "system" | "incident";
@@ -225,24 +226,20 @@ export default function ActivityLog() {
       className="space-y-8 pb-10"
     >
       {/* ── Header ── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 mb-1">
-            Activity Log
-          </h1>
-          <p className="text-slate-500 font-normal">
-            Real-time system events, user actions, and incident trail.
-          </p>
-        </div>
-        <Button
-          variant="outline"
-          size="sm"
-          className="h-9 gap-2 border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 rounded-lg self-start sm:self-auto"
-        >
-          <Filter size={14} />
-          Advanced Filter
-        </Button>
-      </div>
+      <PageHeader 
+        title="Activity Log"
+        subtitle="Real-time system events, user actions, and incident trail."
+        renderActions={() => (
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-9 gap-2 border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 rounded-lg self-start sm:self-auto"
+          >
+            <Filter size={14} />
+            Advanced Filter
+          </Button>
+        )}
+      />
 
       {/* ── Summary Tiles ── */}
       <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">

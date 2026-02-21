@@ -22,6 +22,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useAdminTheme } from "@/context/AdminThemeContext";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
@@ -683,14 +684,10 @@ export default function Settings() {
       className="space-y-6 pb-10"
     >
       {/* ── Header ── */}
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900 mb-1">
-          Settings
-        </h1>
-        <p className="text-slate-500 font-normal">
-          Manage your account, notifications, security, and platform-wide configuration.
-        </p>
-      </div>
+      <PageHeader 
+        title="Settings"
+        subtitle="Manage your account, notifications, security, and platform-wide configuration."
+      />
 
       {/* ── Layout ── */}
       <div className="flex flex-col lg:flex-row gap-6 items-start">

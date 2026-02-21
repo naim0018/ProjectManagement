@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { DeliveryPipelineTable } from "./Components/DeliveryPipelineTable";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 const projects = [
   {
@@ -92,25 +93,22 @@ const AllProjects = () => {
       className="space-y-8 pb-10"
     >
       {/* Premium Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div>
-          <div className="flex items-center gap-2 mb-1.5">
-             <span className="h-6 w-1 bg-brand-600 rounded-full" />
-             <h1 className="text-2xl font-bold tracking-tight text-slate-900">All Projects</h1>
-          </div>
-          <p className="text-slate-500 font-medium text-sm">Managing global delivery lifecycles across all clusters.</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <Button variant="outline" className="h-10 border-slate-200 shadow-sm text-slate-600 font-semibold px-4 hover:bg-slate-50">
-            <FileDown size={16} className="mr-2" />
-            Export Data
-          </Button>
-          <Button className="h-10 bg-brand-600 hover:bg-brand-700 shadow-sm font-semibold text-white px-5 transition-all active:scale-95">
-            <Plus className="mr-2 h-4 w-4" />
-            New Project
-          </Button>
-        </div>
-      </div>
+      <PageHeader 
+        title="All Projects"
+        subtitle="Managing global delivery lifecycles across all clusters."
+        renderActions={() => (
+          <>
+            <Button variant="outline" className="h-10 border-slate-200 shadow-sm text-slate-600 font-semibold px-4 hover:bg-slate-50">
+              <FileDown size={16} className="mr-2" />
+              Export Data
+            </Button>
+            <Button className="h-10 bg-brand-600 hover:bg-brand-700 shadow-sm font-semibold text-white px-5 transition-all active:scale-95">
+              <Plus className="mr-2 h-4 w-4" />
+              New Project
+            </Button>
+          </>
+        )}
+      />
 
       {/* Stats Grid - Exactly like Overview */}
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">

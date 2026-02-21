@@ -20,6 +20,7 @@ import { QueueTable } from "./Components/QueueTable";
 import { RunningProjectsTable } from "./Components/RunningProjectsTable";
 import { MemberRevenueTable } from "./Components/MemberRevenueTable";
 import { MetricsCard } from "@/components/dashboard/MetricsCard";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 const projectsData = [
   {
@@ -152,25 +153,25 @@ export default function ProjectManagement() {
       className="space-y-6"
     >
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold text-slate-900 leading-tight">Project Management</h1>
-          <p className="text-slate-500 text-sm mt-1">Manage intake queue and monitor active execution phases.</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList>
-              <TabsTrigger value="pending">Queue</TabsTrigger>
-              <TabsTrigger value="running">Running</TabsTrigger>
-              <TabsTrigger value="revenue">Revenue</TabsTrigger>
-            </TabsList>
-          </Tabs>
+      <PageHeader 
+        title="Project Management"
+        subtitle="Manage intake queue and monitor active execution phases."
+        renderActions={() => (
+          <>
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
+              <TabsList>
+                <TabsTrigger value="pending">Queue</TabsTrigger>
+                <TabsTrigger value="running">Running</TabsTrigger>
+                <TabsTrigger value="revenue">Revenue</TabsTrigger>
+              </TabsList>
+            </Tabs>
 
-          <Button className="bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg h-10 px-6 shadow-sm">
-            <Plus className="mr-2 h-4 w-4" /> New Project
-          </Button>
-        </div>
-      </div>
+            <Button className="bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg h-10 px-6 shadow-sm">
+              <Plus className="mr-2 h-4 w-4" /> New Project
+            </Button>
+          </>
+        )}
+      />
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -256,8 +257,8 @@ export default function ProjectManagement() {
         )}
       </div>
 
-      <Card className="border-slate-200 rounded-xl shadow-sm bg-white overflow-hidden">
-        <CardHeader className="p-4 border-b border-slate-100 bg-slate-50/50">
+      <Card className="border-slate-200 rounded-xl shadow-sm bg-white py-0 overflow-hidden">
+        <CardHeader className="pt-4 pb-2 border-b border-slate-100 bg-slate-50/50">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="relative w-full md:w-[450px]">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />

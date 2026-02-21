@@ -216,8 +216,8 @@ export const DeliveryTarget = () => {
 
   return (
     <div className="">
-      <Card className="border-slate-200 rounded-xl shadow-sm bg-white overflow-hidden pt-0">
-        <CardHeader className="border-b border-slate-100 bg-slate-50/50 p-6">
+      <Card className="border-slate-200 rounded-xl shadow-sm bg-white py-0 overflow-hidden gap-0">
+        <CardHeader className="border-b border-slate-100 bg-slate-50/50 pt-4 pb-2">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <CardTitle className="text-xl font-bold text-slate-900 flex items-center gap-2">
@@ -281,7 +281,7 @@ export const DeliveryTarget = () => {
         </CardHeader>
 
         {/* Global Stats Bar - Compacted */}
-        <div className="grid grid-cols-2 md:grid-cols-4 border-b border-slate-100 bg-slate-50/20">
+        <div className="grid grid-cols-2 md:grid-cols-4 border-b border-slate-100 dark:bg-slate-700">
           <div className="p-2.5 border-r border-slate-100 flex flex-col items-center justify-center text-center">
             <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">
               Total Target

@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  FolderKanban,
-  DollarSign,
-  Target,
-  Clock,
-  Ban,
-} from "lucide-react";
+import { FolderKanban, DollarSign, Target, Clock, Ban } from "lucide-react";
 import { motion } from "framer-motion";
 
 import { MetricsCard } from "@/components/dashboard/MetricsCard";
@@ -15,6 +9,8 @@ import { ProjectStatusChart } from "./Components/ProjectStatusChart";
 import { PendingProjectsTable } from "./Components/PendingProjectsTable";
 import { DeliveryTarget } from "./Components/DeliveryTarget";
 import { IncidentFeed } from "./Components/IncidentFeed";
+
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 export default function Overview() {
   const [data] = useState(mockAdminData);
@@ -92,16 +88,10 @@ export default function Overview() {
       className="space-y-8 pb-10"
     >
       {/* Header Section */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 mb-1">
-            System Intelligence
-          </h1>
-          <p className="text-slate-500 font-normal">
-            Global operational overview across all active organizations.
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        title="Overview"
+        subtitle="Global operational overview across all active organizations."
+      />
 
       {/* Stats Grid */}
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -121,7 +111,10 @@ export default function Overview() {
       {/* Analytics Group */}
       <div className="grid gap-6 md:grid-cols-7">
         <RevenueChart data={revenueData} />
-        <ProjectStatusChart data={projectStatusData} totalProjects={data.totalProjects} />
+        <ProjectStatusChart
+          data={projectStatusData}
+          totalProjects={data.totalProjects}
+        />
       </div>
 
       {/* Lower Registry Sections */}

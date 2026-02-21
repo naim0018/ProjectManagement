@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { UserDirectoryTable } from "./Components/UserDirectoryTable";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 const users = [
   { 
@@ -75,22 +76,22 @@ const UserManagement = () => {
       className="space-y-8"
     >
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 mb-1">User Management</h1>
-          <p className="text-slate-500 text-base font-normal">Control system access and assign roles across all organizations.</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <Button variant="outline" className="h-10 px-4 border-slate-200 rounded-lg shadow-sm hover:scale-[1.02] transition-all font-semibold">
-            <Filter className="mr-2 h-4 w-4" />
-            Filters
-          </Button>
-          <Button className="h-10 px-5 bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm hover:scale-[1.02] transition-all font-semibold text-white">
-            <UserPlus className="mr-2 h-4 w-4" />
-            Invite User
-          </Button>
-        </div>
-      </div>
+      <PageHeader 
+        title="User Management"
+        subtitle="Control system access and assign roles across all organizations."
+        renderActions={() => (
+          <>
+            <Button variant="outline" className="h-10 px-4 border-slate-200 rounded-lg shadow-sm hover:scale-[1.02] transition-all font-semibold">
+              <Filter className="mr-2 h-4 w-4" />
+              Filters
+            </Button>
+            <Button className="h-10 px-5 bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm hover:scale-[1.02] transition-all font-semibold text-white">
+              <UserPlus className="mr-2 h-4 w-4" />
+              Invite User
+            </Button>
+          </>
+        )}
+      />
 
       {/* System Intelligence Stats - 5 Card Layout */}
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">

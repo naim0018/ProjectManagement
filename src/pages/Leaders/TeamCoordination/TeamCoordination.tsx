@@ -19,6 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 import { MetricsCard } from "@/components/dashboard/MetricsCard";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 const teamData = [
   {
@@ -92,20 +93,20 @@ export default function TeamCoordination() {
       animate={{ opacity: 1, y: 0 }}
       className="space-y-6"
     >
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900 leading-tight">Team Coordination</h1>
-          <p className="text-slate-500 text-sm mt-1">Monitor project allocations and team performance metrics.</p>
-        </div>
-        <div className="flex items-center gap-2">
-           <Button variant="outline" className="rounded-xl h-11 border-slate-200 shadow-sm font-semibold">
+      <PageHeader 
+        title="Team Coordination"
+        subtitle="Monitor project allocations and team performance metrics."
+        renderActions={() => (
+          <div className="flex items-center gap-2">
+            <Button variant="outline" className="rounded-xl h-11 border-slate-200 shadow-sm font-semibold">
               <Mail className="mr-2 h-4 w-4" /> Broadcast
-           </Button>
-           <Button className="bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl h-11 px-6 shadow-lg shadow-brand-500/20 active:scale-95 transition-all">
+            </Button>
+            <Button className="bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl h-11 px-6 shadow-lg shadow-brand-500/20 active:scale-95 transition-all">
               Invite Member
-           </Button>
-        </div>
-      </div>
+            </Button>
+          </div>
+        )}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <MetricsCard

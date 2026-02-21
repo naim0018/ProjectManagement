@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { MetricsCard } from "@/components/dashboard/MetricsCard";
 import { IntakeQueueTable } from "./Components/IntakeQueueTable";
 import { TeamEfficiencySidebar } from "./Components/TeamEfficiencySidebar";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 const leaderDashboardData = {
   organizationName: "TechFlow Solutions",
@@ -94,24 +95,20 @@ export default function LeadersDashboard() {
       className="space-y-8 pb-10"
     >
       {/* Header Section */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 mb-1">
-            Organization Intelligence
-          </h1>
-          <p className="text-slate-500 font-normal">
-            Strategic overview of {leaderDashboardData.organizationName} operations.
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-           <Button variant="outline" className="rounded-lg border-slate-200 font-semibold shadow-sm h-10 px-4">
+      <PageHeader 
+        title="Organization Intelligence"
+        subtitle={`Strategic overview of ${leaderDashboardData.organizationName} operations.`}
+        renderActions={() => (
+          <>
+            <Button variant="outline" className="rounded-lg border-slate-200 font-semibold shadow-sm h-10 px-4">
               <Users className="mr-2 h-4 w-4" /> Team
-           </Button>
-           <Button className="bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg shadow-sm h-10 px-4">
+            </Button>
+            <Button className="bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg shadow-sm h-10 px-4">
               Assign Intake
-           </Button>
-        </div>
-      </div>
+            </Button>
+          </>
+        )}
+      />
 
       {/* Stats Grid */}
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">

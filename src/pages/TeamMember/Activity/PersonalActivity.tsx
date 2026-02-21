@@ -11,6 +11,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 
 const activities = [
@@ -79,20 +80,20 @@ const PersonalActivity = () => {
       transition={{ duration: 0.5 }}
       className="space-y-6"
     >
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold text-slate-900">Personal Activity</h1>
-          <p className="text-sm text-slate-500">Track your contributions and performance timeline</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <Button variant="outline" className="h-10 text-slate-600 border-slate-200">
-            <Calendar size={16} className="mr-2" /> Monthly View
-          </Button>
-          <Button variant="outline" className="h-10 text-slate-600 border-slate-200">
-            <Download size={16} className="mr-2" /> Export Log
-          </Button>
-        </div>
-      </div>
+      <PageHeader 
+        title="Personal Activity"
+        subtitle="Track your contributions and performance timeline"
+        renderActions={() => (
+          <div className="flex items-center gap-3">
+            <Button variant="outline" className="h-10 text-slate-600 border-slate-200">
+              <Calendar size={16} className="mr-2" /> Monthly View
+            </Button>
+            <Button variant="outline" className="h-10 text-slate-600 border-slate-200">
+              <Download size={16} className="mr-2" /> Export Log
+            </Button>
+          </div>
+        )}
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-8">

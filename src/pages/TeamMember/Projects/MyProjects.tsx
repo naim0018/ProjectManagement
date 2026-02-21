@@ -27,6 +27,7 @@ import {
 import { format, differenceInDays, differenceInHours, differenceInMinutes, parseISO, isAfter } from "date-fns";
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 const projectsData = [
   {
@@ -128,20 +129,20 @@ const MyProjects = () => {
       transition={{ duration: 0.5 }}
       className="space-y-6"
     >
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold text-slate-900">My Projects</h1>
-          <p className="text-sm text-slate-500">Manage and track your active project contributions</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <Button variant="outline" className="h-10 text-slate-600 border-slate-200">
-            <Filter size={16} className="mr-2" /> Filter
-          </Button>
-          <Button className="h-10 bg-brand-600 hover:bg-brand-700 text-white">
-            <Plus size={16} className="mr-2" /> Request Scope
-          </Button>
-        </div>
-      </div>
+      <PageHeader 
+        title="My Projects"
+        subtitle="Manage and track your active project contributions"
+        renderActions={() => (
+          <div className="flex items-center gap-3">
+            <Button variant="outline" className="h-10 text-slate-600 border-slate-200">
+              <Filter size={16} className="mr-2" /> Filter
+            </Button>
+            <Button className="h-10 bg-brand-600 hover:bg-brand-700 text-white">
+              <Plus size={16} className="mr-2" /> Request Scope
+            </Button>
+          </div>
+        )}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <MetricsCard 

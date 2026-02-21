@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAdminTheme } from "@/context/AdminThemeContext";
+import { NotificationPopover } from "@/common/NotificationModal/NotificationModal";
 
 interface HeaderProps {
   isCollapsed: boolean;
@@ -65,10 +66,12 @@ const Header = ({ isCollapsed, setIsCollapsed }: HeaderProps) => {
         </button>
 
         {/* Notifications */}
-        <button className="p-2 text-slate-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all relative group">
-          <Bell size={18} />
-          <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-brand-600 rounded-full ring-2 ring-white"></span>
-        </button>
+        <NotificationPopover>
+          <button className="p-2 text-slate-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all relative group">
+            <Bell size={18} />
+            <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-brand-600 rounded-full ring-2 ring-white"></span>
+          </button>
+        </NotificationPopover>
 
         <div className="h-5 w-[1px] bg-slate-200 mx-1"></div>
 

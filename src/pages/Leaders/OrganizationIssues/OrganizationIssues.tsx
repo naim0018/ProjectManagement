@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { MetricsCard } from "@/components/dashboard/MetricsCard";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 const issuesData = [
   {
@@ -80,15 +81,15 @@ export default function OrganizationIssues() {
       animate={{ opacity: 1, y: 0 }}
       className="space-y-6"
     >
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900 leading-tight">Organization Issues</h1>
-          <p className="text-slate-500 text-sm mt-1">Manage blockers, technical debts, and operational hurdles.</p>
-        </div>
-        <Button className="bg-rose-600 hover:bg-rose-700 text-white font-semibold rounded-xl h-11 px-6 shadow-lg shadow-rose-500/20 active:scale-95 transition-all">
-          <AlertTriangle className="mr-2 h-5 w-5" /> Report Issue
-        </Button>
-      </div>
+      <PageHeader 
+        title="Organization Issues"
+        subtitle="Manage blockers, technical debts, and operational hurdles."
+        renderActions={() => (
+          <Button className="bg-rose-600 hover:bg-rose-700 text-white font-semibold rounded-xl h-11 px-6 shadow-lg shadow-rose-500/20 active:scale-95 transition-all">
+            <AlertTriangle className="mr-2 h-5 w-5" /> Report Issue
+          </Button>
+        )}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <MetricsCard

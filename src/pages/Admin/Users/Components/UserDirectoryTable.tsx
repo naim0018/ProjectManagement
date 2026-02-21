@@ -41,8 +41,8 @@ interface UserDirectoryTableProps {
 
 export const UserDirectoryTable = ({ users, searchTerm, onSearchChange }: UserDirectoryTableProps) => {
   return (
-    <Card className="border-slate-200 rounded-xl shadow-sm bg-white overflow-hidden">
-      <CardHeader className="border-b border-slate-100 bg-slate-50/30 p-6">
+    <Card className="border-slate-200 rounded-xl shadow-sm bg-white py-0 overflow-hidden gap-0">
+      <CardHeader className="border-b border-slate-100 bg-slate-50/30 pt-4 pb-2">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <CardTitle className="text-lg font-semibold text-slate-900">User Directory</CardTitle>
           <div className="relative w-full md:w-80">

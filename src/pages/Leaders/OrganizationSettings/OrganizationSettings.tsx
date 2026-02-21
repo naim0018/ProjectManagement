@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { PageHeader } from "@/common/PageHeader/PageHeader";
 
 export default function OrganizationSettings() {
   const [isSaving, setIsSaving] = useState(false);
@@ -36,19 +37,19 @@ export default function OrganizationSettings() {
       animate={{ opacity: 1, scale: 1 }}
       className="space-y-6 max-w-5xl mx-auto"
     >
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900 leading-tight">Organization Settings</h1>
-          <p className="text-slate-500 text-sm mt-1">Manage global preferences and company profile configurations.</p>
-        </div>
-        <Button 
-          onClick={handleSave}
-          disabled={isSaving}
-          className="bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl h-11 px-8 shadow-lg shadow-brand-500/20 transition-all active:scale-95"
-        >
-          {isSaving ? "Saving..." : <span className="flex items-center gap-2"><Save size={18} /> Save Changes</span>}
-        </Button>
-      </div>
+      <PageHeader 
+        title="Organization Settings"
+        subtitle="Manage global preferences and company profile configurations."
+        renderActions={() => (
+          <Button 
+            onClick={handleSave}
+            disabled={isSaving}
+            className="bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl h-11 px-8 shadow-lg shadow-brand-500/20 transition-all active:scale-95"
+          >
+            {isSaving ? "Saving..." : <span className="flex items-center gap-2"><Save size={18} /> Save Changes</span>}
+          </Button>
+        )}
+      />
 
       <Tabs defaultValue="profile" className="space-y-6">
         <TabsList className="bg-slate-100/50 p-1 rounded-2xl border border-slate-200 gap-1 inline-flex">
