@@ -19,8 +19,8 @@ interface QueueTableProps {
 export const QueueTable = ({ projects }: QueueTableProps) => {
   return (
     <Table>
-      <TableHeader className="bg-slate-50/30">
-        <TableRow className="border-slate-100 h-12">
+      <TableHeader className="bg-slate-50/50">
+        <TableRow className="border-slate-100 h-10 hover:bg-transparent">
           <TableHead className="px-6 text-[10px] font-semibold text-slate-500 uppercase tracking-widest">Project Name</TableHead>
           <TableHead className="px-6 text-[10px] font-semibold text-slate-500 uppercase tracking-widest">Client Name</TableHead>
           <TableHead className="px-6 text-[10px] font-semibold text-slate-500 uppercase tracking-widest">Profile Name</TableHead>

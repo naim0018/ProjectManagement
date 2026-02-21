@@ -42,7 +42,7 @@ export function MemberRevenueTable({ data, timeframe }: MemberRevenueTableProps)
     <div className="overflow-x-auto">
       <Table>
         <TableHeader className="bg-slate-50/50">
-          <TableRow className="hover:bg-transparent border-slate-100">
+          <TableRow className="hover:bg-transparent border-slate-100 h-10">
             <TableHead className="w-[300px] text-[11px] font-bold text-slate-500 uppercase tracking-wider">Team Member</TableHead>
             <TableHead className="text-[11px] font-bold text-slate-500 uppercase tracking-wider text-center">Projects</TableHead>
             <TableHead className="text-[11px] font-bold text-slate-500 uppercase tracking-wider text-right">

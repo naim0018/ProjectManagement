@@ -261,8 +261,8 @@ export default function ActivityLog() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.28, duration: 0.45, ease: "easeOut" }}
       >
-        <Card className="border-slate-200 rounded-xl shadow-sm bg-white overflow-hidden">
-          <CardHeader className="border-b border-slate-100 bg-slate-50/50">
+        <Card className="border-slate-200 rounded-xl shadow-sm bg-white py-0 overflow-hidden gap-0">
+          <CardHeader className="pt-4 pb-2 border-b border-slate-100 bg-slate-50/30">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               {/* Search */}
               <div className="relative flex-1">
