@@ -6,6 +6,7 @@ import { adminRoutes } from "./AdminRoutes";
 import { publicRoutes } from "./PublicRoutes";
 import { leaderRoutes } from "./LeaderRoutes";
 import { teamRoutes } from "./TeamRoutes";
+import { salesRoutes } from "./SalesRoutes";
 import NotFound from "@/pages/NotFound";
 import { routesGenerator } from "@/utils/Generator/RoutesGenerator";
 import DashboardLayout from "@/Layout/DashboardLayout/DashboardLayout";
@@ -71,6 +72,19 @@ const routes = createBrowserRouter([
         element: <Navigate to="dashboard" replace />,
       },
       ...routesGenerator(teamRoutes),
+    ],
+  },
+  {
+    path: "/sales",
+    element: (
+      <DashboardLayout />
+    ),
+    children: [
+      {
+        index: true,
+        element: <Navigate to="overview" replace />,
+      },
+      ...routesGenerator(salesRoutes),
     ],
   },
   {

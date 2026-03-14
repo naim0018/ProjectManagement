@@ -4,7 +4,7 @@ import {
   MessageSquare,
   History,
   Settings as SettingsIcon,
-  Plus
+  Play
 } from "lucide-react";
 
 import TeamMemberDashboard from "@/pages/TeamMember/Dashboard/TeamMemberDashboard";
@@ -27,8 +27,8 @@ export const teamRoutes = [
         element: <TeamMemberDashboard />,
       },
       {
-        icon: <Plus className="size-5" />,
-        name: "New Project",
+        icon: <Play className="size-5" />,
+        name: "Running Project",
         path: "new-projects",
         element: <NewProjects />,
       },

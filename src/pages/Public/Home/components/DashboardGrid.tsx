@@ -3,6 +3,7 @@ import {
   BarChart3, 
   ShieldCheck, 
   Users, 
+  TrendingUp,
   ArrowRight
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -32,12 +33,20 @@ const dashboards = [
     path: "/team",
     color: "amber",
     features: ["Assigned Tasks", "Progress Update", "Peer Review"]
+  },
+  {
+    title: "Sales Dashboard",
+    description: "Track revenue, manage client orders, and analyze platform performance.",
+    icon: <TrendingUp className="w-6 h-6 text-brand-500" />,
+    path: "/sales",
+    color: "emerald",
+    features: ["Revenue Tracking", "Order Pipeline", "Platform Insights"]
   }
 ];
 
 const DashboardGrid = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl w-full px-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] w-full px-4">
       {dashboards.map((dashboard, index) => (
         <motion.div
           key={dashboard.title}

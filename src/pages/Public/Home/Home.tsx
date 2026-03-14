@@ -8,15 +8,15 @@ const Home = () => {
       {/* Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-64 bg-brand-500/10 blur-[120px] rounded-full -z-10" />
       
-      <div className="min-h-[90vh] py-12 px-4 flex flex-col items-center relative z-10">
+      <div className="min-h-[90vh] py-12 px-4 flex flex-col items-center justify-center relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent mb-4">
-            Unified Project Workspace
+          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-brand-600 to-brand-700 bg-clip-text text-transparent mb-4">
+            Project Workspace
           </h1>
           <p className="text-muted-foreground max-w-xl mx-auto">
             Access your specific role-based dashboard to manage tasks, collaborate with your team, 

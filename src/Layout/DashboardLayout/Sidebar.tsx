@@ -2,6 +2,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { adminRoutes } from "@/routes/AdminRoutes";
 import { leaderRoutes } from "@/routes/LeaderRoutes";
 import { teamRoutes } from "@/routes/TeamRoutes";
+import { salesRoutes } from "@/routes/SalesRoutes";
 import { menuGenerator, MenuItem } from "@/utils/Generator/MenuGenerator";
 import { Location } from "react-router-dom";
 import { LayoutDashboard, LogOut, Settings } from "lucide-react";
@@ -43,16 +44,16 @@ const NavItem = ({
 
   const active = isRouteActive(item, location.pathname);
 
-  const itemClasses = `flex items-center ${isCollapsed ? 'justify-center px-0' : 'justify-start px-4'} py-2.5 text-sm rounded-lg transition-all duration-300 no-underline group relative
+  const itemClasses = `flex items-center ${isCollapsed ? 'justify-center px-0' : 'justify-start px-4'} py-2.5 text-sm rounded-lg transition-all duration-300 no-underline group relative mx-1 hover:scale-102
     ${
       active
-        ? "bg-brand-600 text-white shadow-sm font-semibold hover:scale-[1.02]"
+        ? "bg-brand-600 text-white shadow-sm font-semibold"
         : "text-slate-500 hover:bg-slate-50 hover:text-brand-600 font-normal"
     }`;
 
   const content = (
     <>
-      <div className={`transition-transform duration-300 ${active ? "scale-105" : "group-hover:scale-105"} ${isCollapsed ? 'mx-0' : ''}`}>
+      <div className={`transition-transform duration-300 ${!active && "group-hover:scale-105"} ${isCollapsed ? 'mx-0' : ''}`}>
         {item.icon}
       </div>
       {!isCollapsed && <span className="flex-1 tracking-tight truncate ml-3">{item.label}</span>}
@@ -99,6 +100,10 @@ const Sidebar = ({ isCollapsed }: SidebarProps) => {
     currentRoutes = teamRoutes;
     basePath = "/team";
     brandName = "Team";
+  } else if (location.pathname.startsWith("/sales")) {
+    currentRoutes = salesRoutes;
+    basePath = "/sales";
+    brandName = "Sales";
   }
 
   const menu = menuGenerator(currentRoutes, basePath);
@@ -133,7 +138,7 @@ const Sidebar = ({ isCollapsed }: SidebarProps) => {
                 {group}
               </p>
             )}
-            <div className="space-y-1">
+            <div className="space-y-2">
               {items.map((item) => (
                 <NavItem 
                   key={item.label + (item.path || "")} 
