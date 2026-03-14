@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { adminRoutes } from "@/routes/AdminRoutes";
 import { leaderRoutes } from "@/routes/LeaderRoutes";
 import { teamRoutes } from "@/routes/TeamRoutes";
@@ -83,6 +83,7 @@ const NavItem = ({
 
 const Sidebar = ({ isCollapsed }: SidebarProps) => {
   const location = useLocation();
+  const navigate = useNavigate();
   
   let currentRoutes: any[] = [];
   let basePath = "";
@@ -171,7 +172,12 @@ const Sidebar = ({ isCollapsed }: SidebarProps) => {
             <Button variant="ghost" size="icon" className={`${isCollapsed ? 'h-10 w-10' : 'flex-1 h-9'} rounded-lg hover:bg-slate-100 text-slate-500 transition-all`}>
                <Settings size={18} />
             </Button>
-            <Button variant="ghost" size="icon" className={`${isCollapsed ? 'h-10 w-10' : 'flex-1 h-9'} rounded-lg hover:bg-rose-50 text-rose-500 transition-all`}>
+            <Button 
+               onClick={() => navigate("/")}
+               variant="ghost" 
+               size="icon" 
+               className={`${isCollapsed ? 'h-10 w-10' : 'flex-1 h-9'} rounded-lg hover:bg-rose-50 text-rose-500 transition-all`}
+            >
                <LogOut size={18} />
             </Button>
          </div>

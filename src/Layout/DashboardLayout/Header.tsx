@@ -19,6 +19,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAdminTheme } from "@/context/AdminThemeContext";
 import { NotificationPopover } from "@/common/NotificationModal/NotificationModal";
@@ -30,6 +31,12 @@ interface HeaderProps {
 
 const Header = ({ isCollapsed, setIsCollapsed }: HeaderProps) => {
   const { isDark, toggleDark } = useAdminTheme();
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    // Perform any logout logic here (clear tokens, etc.)
+    navigate("/");
+  };
 
   return (
     <header className="h-16 bg-white/70 backdrop-blur-xl border-b border-slate-200 flex items-center justify-between px-8 sticky top-0 z-30 transition-all duration-500 shadow-sm">
@@ -112,7 +119,10 @@ const Header = ({ isCollapsed, setIsCollapsed }: HeaderProps) => {
              
              <DropdownMenuSeparator className="my-2 bg-slate-100" />
              
-             <DropdownMenuItem className="rounded-lg px-3 py-2.5 gap-3 cursor-pointer hover:bg-rose-50 group font-semibold text-rose-600 transition-all border border-transparent hover:border-rose-100">
+             <DropdownMenuItem 
+                onSelect={handleSignOut}
+                className="rounded-lg px-3 py-2.5 gap-3 cursor-pointer hover:bg-rose-50 group font-semibold text-rose-600 transition-all border border-transparent hover:border-rose-100"
+             >
                 <LogOut size={16} className="text-rose-400 group-hover:text-rose-600" />
                 <span>Sign Out</span>
              </DropdownMenuItem>
